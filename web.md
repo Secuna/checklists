@@ -36,6 +36,7 @@
 
 ### Active Recon and Analysis
 - [ ] httpx to identify technologies (https://github.com/projectdiscovery/httpx)
+- [ ] nuclei for scanning (https://github.com/projectdiscovery/nuclei)
 - [ ] wafw00f to identify web app firewall (Cloudflare, AWS, Fastly, etc...)
 - [ ] Test for [SSL/TLS](https://github.com/drwetter/testssl.sh)
 - [ ] Directory and File Bruteforcing using Wfuzz, gobuster, dirsearch
