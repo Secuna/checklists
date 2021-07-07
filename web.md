@@ -1,58 +1,59 @@
 # Web Application Pentesting Checklist
 
-### Preparation
-#### Planning and Scoping
-- [ ] Time of Engagement
-- [ ] Wildards
-- [ ] Subnets
-- [ ] Web and/or mobile applications
-#### Tools
-- [ ] Burp Suite Professional
-- [ ] FoxyProxy
-- [ ] Any JS Deobfuscator
-- [ ] [SSL/TLS](https://github.com/drwetter/testssl.sh)
-- [ ] gobuster/ffuf
-- [ ] nmap scripts (only on http)
-### Reconnaisance
-#### Passive Recon
+## Preparation
+### Planning and Scoping
+- [ ] Finalize the Time of Engagement
+- [ ] Finalize the Assets in Scope
+- [ ] Finalize the Point of Contact for each party
+
+## Reconnaisance
+### Passive Recon
+#### Information Leakage
 - [ ] Google Dorks
-- [ ] theHarvester
+- [ ] theHarvester / Hunter.io
 - [ ] Employee  / Website Breach (haveibeenpwned, raidforums, leakedsource)
-- [ ] Shodan.io
+- [ ] Shodan.io / Censys
+- [ ] Censys / Facebook Transparency / Google Transparency
 - [ ] Get subdomains from CRT.SH or tools.secuna.io
 - [ ] LDAP info in SSL/TLS certificate
-- [ ] SPF Checklist
-- [ ] DMARC Checklist
-- [ ] WHOIS records
+- [ ] WHOIS Records
 - [ ] Wayback Machine
+- [ ] StackOverflow
+- [ ] Whitepaper/Documentation
+- [ ] Cloudflare DNS check
+- [ ] Find endpoints in javascript files (grep for HTTP methods)
+
+#### Misconfiguration
+- [ ] Missing SPF Record
+- [ ] Missing DMARC Record
+- [ ] Missing DKIM Record
+- [ ] Missing Security Headers
 - [ ] Public Github repositories
 	- [ ] Check comments on source code
 	- [ ] Check issues on repositories
 	- [ ] Check for API keys
-- [ ] Facebook, Instagram, Twitter Accounts
-- [ ] Whitepaper/Documentation
-#### Active Recon and Analysis
-- [ ] WhatWeb (Apache, nginx, PHP, etc...)
-- [ ] What CDN/WAF is target using (Cloudflare, AWS, Fastly, etc...)
+	- [ ] Check commits
+
+### Active Recon and Analysis
+- [ ] httpx to identify technologies (https://github.com/projectdiscovery/httpx)
+- [ ] wafw00f to identify web app firewall (Cloudflare, AWS, Fastly, etc...)
 - [ ] Test for [SSL/TLS](https://github.com/drwetter/testssl.sh)
-- [ ] common directories
+- [ ] Directory and File Bruteforcing using Wfuzz, gobuster, dirsearch
 	- [ ] robots.txt
 	- [ ] sitemap.xml
 	- [ ] crossdomain.xml
 	- [ ] clientaccesspolicy.xml
 	- [ ] /.well-known/
 	- [ ] /server-status/
-- [ ] .git folder
-- [ ] Burp Spider
-- [ ] Burp Scanner
-- [ ] Find endpoints in javascript files (grep for HTTP methods)
+	- [ ] .git folder
+	- [ ] backup files
+- [ ] Burp Active Scanner
 - [ ] Check for version numbers in the website
-- [ ] Sublist3r / ffuf
-- [ ] nmap scripts (only for web servers)
-- [ ] Best Practices
-### Test cases in common features
-#### Authentication
-##### Register
+- [ ] Sublist3r / wfuzz for subdomain enumeration
+
+## Test cases in common features
+### Authentication
+#### Register
 - [ ] Username Policy
 	- [ ] Minimum of 4 characters
 	- [ ] Maximum of 32-64 characters
@@ -78,7 +79,7 @@
 	- [ ] Check if bypassable by OCR
 - [ ] Check with existing account
 - [ ] Best Practices
-##### Login
+#### Login
 - [ ] Default passwords
 - [ ] Enumeration
 	- [ ] Username doesn't exist
@@ -92,7 +93,7 @@
 - [ ] Check for XSS in input fields
 - [ ] SQL Injection (sqlmap)
 - [ ] Best Practices
-##### Forgot Password
+#### Forgot Password
 - [ ] Enumeration
 	- [ ] Username doesn't exist
 	- [ ] Email does not exist
@@ -104,7 +105,7 @@
 - [ ] Can reset token be used again?
 - [ ] Check for Parameter pollution
 - [ ] Best practices
-##### Change Credentials
+#### Change Credentials
 - [ ] check if you can change whitelist/blacklisted domain
 - [ ] does application require to input current password when changing?
 - [ ] does application require to input OTP when changing?
@@ -113,17 +114,17 @@
 - [ ] does the application accept the (+) character when changing?
 - [ ] Check for Parameter pollution
 - [ ] Best Practices
-##### Logout
+#### Logout
 - [ ] Check cookie if it's still usable after logout
 - [ ] Best Practices
-#### Authorization
+### Authorization
 - [ ] Check for privilege escalation
 	- AutoRepeater
 	- [ ] Horizontal privesc
 	- [ ] Vertical privesc
 - [ ] What happens if user has no activity for 15 minutes? (OWASP compliance)
 - [ ] Best Practices
-#### Accounting
+### Accounting
 - [ ] Does the application log unauthenticated requests
 - [ ] Does the application log authenticated requests
 - [ ] Does the application log authorized requests
@@ -133,7 +134,7 @@
 	- [ ] change something you are (either username, MAC Address, user agent)
 	- [ ] change where you are (either IP, Location, ASN)
 - [ ] Best Practices
-#### Parameter Testing
+### Parameter Testing
 - [ ] Local File Inclusion
 - [ ] SSRF
 - [ ] Open Redirect
@@ -146,18 +147,8 @@
 - [ ] `;` testing 
 - [ ] Remote Code Execution commands
 - [ ] IDOR Testing
-#### Best Practices
-- [ ] X-XSS-Protection
-- [ ] Strict-Transport-Security
-- [ ] Content-Security-Policy
-- [ ] Public-Key-Pins
-- [ ] X-Frame-Options
-- [ ] X-Content-Type-Options
-- [ ] Referer-Policy
-- [ ] Cache-Control
-- [ ] Expires
-- [ ] CSRF Tokens
-#### Business Logic Errors
+
+### Business Logic Errors
 - [ ] Check how discounts are computed.
 - [ ] Race Condition bugs.
 - [ ] Check if AAA (Authentication, Authorization, Accounting) is properly implemented.
