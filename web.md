@@ -1,7 +1,5 @@
 # Web Application Pentesting Checklist
-Secuna Software Technologies, Inc.
-<nathan.golez@secuna.io>
-July 6, 2021
+
 ### Preparation
 #### Planning and Scoping
 - [ ] Time of Engagement
