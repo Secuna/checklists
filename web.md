@@ -79,6 +79,7 @@
 	- [ ] CAPTCHA provider?
 	- [ ] Check if bypassable by OCR
 - [ ] Check with existing account
+- [ ] Check for Parameter pollution
 - [ ] Best Practices
 #### Login
 - [ ] Default passwords
@@ -90,9 +91,10 @@
 	- [ ] Burp Intruder for **username+\*@secuna.io**
 - [ ] HTTP Method when sending username/password (GET or POST)
 - [ ] Account Policy
-	- [ ] How many requests until user gets locked out?
-- [ ] Check for XSS in input fields
+	- [ ] How many invalid requests until user gets locked out?
+- [ ] Check for XSS in input fields (\<,\>,\[,\],\",\'\{,\} characters)
 - [ ] SQL Injection (sqlmap)
+- [ ] Check for Parameter pollution
 - [ ] Best Practices
 #### Forgot Password
 - [ ] Enumeration
@@ -100,7 +102,7 @@
 	- [ ] Email does not exist
 - [ ] Rate Limiting
 	- [ ] Burp Intruder for **username+\*@secuna.io** forgot password
-- [ ] HTTP Methold when sending username/password (GET or POST)
+- [ ] HTTP Method when sending username/password (GET or POST)
 - [ ] Account Policy
 	- [ ] How many requests until user gets locked out?
 - [ ] Can reset token be used again?
@@ -124,6 +126,7 @@
 	- [ ] Horizontal privesc
 	- [ ] Vertical privesc
 - [ ] What happens if user has no activity for 15 minutes? (OWASP compliance)
+- [ ] Check length of cookie (9 characters or more)
 - [ ] Best Practices
 ### Accounting
 - [ ] Does the application log unauthenticated requests
