@@ -11,7 +11,7 @@
 #### Information Leakage
 - [ ] Google Dorks
 - [ ] theHarvester / Hunter.io
-- [ ] Employee  / Website Breach (haveibeenpwned, raidforums, leakedsource)
+- [ ] Employee / Website Breach (haveibeenpwned, raidforums, leakedsource)
 - [ ] Shodan.io / Censys
 - [ ] Censys / Facebook Transparency / Google Transparency
 - [ ] Get subdomains from CRT.SH or tools.secuna.io
@@ -54,60 +54,51 @@
 
 ## Test cases in common features
 ### Authentication
-#### Register
-- [ ] Username Policy
-	- [ ] Minimum of 4 characters
-	- [ ] Maximum of 32-64 characters
-	- [ ] Special Characters (exclude \<,\>,\[,\],\",\'\{,\} because of XSS issues)
-	- [ ] Username Uniqueness
-- [ ] Password Policy
-	- [ ] Minimum of 9 characters
-	- [ ] Special Characters (96 character combo)
+#### Registration
+- [ ] Username
+	- [ ] Special Characters (exclude \<,\>,\[,\],\",\'\{,\} because of XSS issues and dot (.) to avoid username like index.php)
+	- [ ] Username Uniqueness (Admin, ADMIN, admin, etc)
+	- [ ] Reserved Usernames (admin, privacy, security must not be used as user's username)
+- [ ] Password
+	- [ ] Minimum of 8 characters with no maximum number
+	- [ ] Must not allow dictionary word as password
 	- [ ] Does the application know your old password (if tried again)
-- [ ] Email Policy
-	- [ ] does the application accept the (+) character
-		- username@secuna.io
-		- username+1@secuna.io
-	- [ ] whitelist/blacklist domain
-		- gmail only, corp email only, etc..
+- [ ] Email
+	- [ ] Must not accept any special character other than `.-+`
 - [ ] Check for XSS (single quotes) in input fields
 - [ ] SQL Injection (sqlmap)
 - [ ] HTTP Method when sending credentials (GET or POST)
-- [ ] Rate Limiting
-	- [ ] Burp Intruder for **username+\*@secuna.io**
+- [ ] Missing Rate Limit
 - [ ] Prensence of CAPTCHA
 	- [ ] CAPTCHA provider?
 	- [ ] Check if bypassable by OCR
 - [ ] Check with existing account
 - [ ] Check for Parameter pollution
-- [ ] Best Practices
 #### Login
-- [ ] Default passwords
+- [ ] Check for default credentials
 - [ ] Enumeration
 	- [ ] Username doesn't exist
-	- [ ] Password is incorect
+	- [ ] Password is incorrect
 	- [ ] Email does not exist
-- [ ] Rate Limiting
-	- [ ] Burp Intruder for **username+\*@secuna.io**
+- [ ] Missing Rate Limit
 - [ ] HTTP Method when sending username/password (GET or POST)
 - [ ] Account Policy
 	- [ ] How many invalid requests until user gets locked out?
 - [ ] Check for XSS in input fields (\<,\>,\[,\],\",\'\{,\} characters)
 - [ ] SQL Injection (sqlmap)
 - [ ] Check for Parameter pollution
-- [ ] Best Practices
 #### Forgot Password
 - [ ] Enumeration
 	- [ ] Username doesn't exist
 	- [ ] Email does not exist
-- [ ] Rate Limiting
-	- [ ] Burp Intruder for **username+\*@secuna.io** forgot password
+- [ ] Missing Rate Limit
 - [ ] HTTP Method when sending username/password (GET or POST)
 - [ ] Account Policy
 	- [ ] How many requests until user gets locked out?
 - [ ] Can reset token be used again?
+- [ ] Check and Monitor the Expiration of Token
+- [ ] Leakage of Reset Password Token
 - [ ] Check for Parameter pollution
-- [ ] Best practices
 #### Change Credentials
 - [ ] check if you can change whitelist/blacklisted domain
 - [ ] does application require to input current password when changing?
@@ -116,10 +107,9 @@
 - [ ] What happens if you input null instead of a value?
 - [ ] does the application accept the (+) character when changing?
 - [ ] Check for Parameter pollution
-- [ ] Best Practices
 #### Logout
 - [ ] Check cookie if it's still usable after logout
-- [ ] Best Practices
+- [ ] Cache issue, Logout then click back button
 ### Authorization
 - [ ] Check for privilege escalation
 	- AutoRepeater
@@ -137,7 +127,6 @@
 - [ ] Check for ban bypass
 	- [ ] change something you are (either username, MAC Address, user agent)
 	- [ ] change where you are (either IP, Location, ASN)
-- [ ] Best Practices
 ### Parameter Testing
 - [ ] Local File Inclusion
 - [ ] SSRF
@@ -156,4 +145,3 @@
 - [ ] Check how discounts are computed.
 - [ ] Race Condition bugs.
 - [ ] Check if AAA (Authentication, Authorization, Accounting) is properly implemented.
-- [ ] Best Practices
