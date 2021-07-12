@@ -111,8 +111,8 @@
 - [ ] Check cookie if it's still usable after logout
 - [ ] Cache issue, Logout then click back button
 ### Authorization
-- [ ] Check for privilege escalation
-	- AutoRepeater
+- [ ] Check for broken access control
+	- AutoRepeater for automation of IDOR
 	- [ ] Horizontal privesc
 	- [ ] Vertical privesc
 - [ ] What happens if user has no activity for 15 minutes? (OWASP compliance)
@@ -140,6 +140,11 @@
 - [ ] `;` testing 
 - [ ] Remote Code Execution commands
 - [ ] IDOR Testing
+- [ ] Insecure Deserialization 
+
+### Misc
+- [ ] XML External Entities
+- [ ] File Uploader
 
 ### Business Logic Errors
 - [ ] Check how discounts are computed.
